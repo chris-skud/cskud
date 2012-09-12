@@ -1,0 +1,37 @@
+/* Reset all page elements to 0 */
+@import url("reset.css");
+
+body {
+	height: 100%;
+	margin: 0;
+	background-color: #ffffff;
+}
+
+textarea {
+	font-size:100%;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+a {
+	color: #1f77b4;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#e84e0f;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+
+.baseproto {
+	font: 100%/1.4em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	min-width: 960px;
+}
+
+.maindiv 
+{
+    margin-top:50px;
+    text-align:center;
+}

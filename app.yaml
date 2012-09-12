@@ -11,8 +11,17 @@ handlers:
 - url: /css
   static_dir: css
 
+- url: /proto/css
+  static_dir: proto/css
+
+- url: /proto/js
+  static_dir: proto/js
+
 - url: /img
   static_dir: img
+
+- url: /impress
+  static_dir: impress
 
 - url: .*
   script: main.py

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>chris skudlarczyk</title>
+    <link rel="stylesheet" href="css/proto.css" type="text/css" />
+    <script type='text/javascript' src="js/ecxd.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script src="js/json2.js" type="text/javascript"></script>
+</head>
+<body class="baseproto">
+    <div style="width:100%" class="maindiv">
+        let's prototype!
+    </div>
+    <script>
+        // code sample using the initialize method
+        var ajax = ecxd.AjaxManager.getInstance();
+
+        var success = function(p_results) {
+          // since we successfully initialized m-api, let's make an ajax call to m-api.
+          var transactionId = ajax.request({ url: p_results.origin + "/stream/me/search.json", 
+                                                type: ecxd.AjaxManager.POST, 
+                                                handleAs: ecxd.AjaxManager.JSON,
+                                                requestHeaders: [{Authorization: ''}],
+                                                successHandler: gotShares,
+                                                errorHandler: failedToGetShares });
+        };
+
+        var error = function(p_results) {
+                console.log("Failed to initialize: " + p_results.origin);
+        };
+
+        var gotShares = function(p_results) {
+                console.log("I am enrolled in the following courses: " + p_results.data.courses);
+                alert(JSON.stringify(p_results));
+
+        };
+
+        var failedToGetShares = function(p_results) {
+                console.log("Failed to get my courses from : " + p_results.url);
+                console.log("Status Code : " + p_results.statusCode);
+        };
+
+        ajax.initialize( { origin: "https://socialuidelegatesvc.ecollege.com", 
+                        successHandler: success, 
+                        errorHandler: error } );
+      </script>
+</body>
+</html>
