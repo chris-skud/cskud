@@ -3,6 +3,10 @@ version: 1
 runtime: python27
 api_version: 1
 threadsafe: no
+libraries:
+- name: jinja2
+  version: latest
+
 handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
@@ -22,6 +26,18 @@ handlers:
 
 - url: /impress
   static_dir: impress
+
+- url: /socialism
+  static_dir: socializer
+
+- url: /socializer
+  static_dir: socializer
+
+- url: /manifesto
+  static_dir: manifesto
+
+- url: /pagerduty
+  script: pagerduty.py
 
 - url: .*
   script: main.py

@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Social On-Call Contact Details</title>
+  <style>
+    body, p, td, table, tr, .bodytext, .stepfield {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+    }
+
+    table.confluenceTable {
+      margin: 5px;
+      border-collapse: collapse;
+    }
+
+    td.confluenceTd, table.confluenceTable td.confluenceTd {
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ddd;
+        padding: 5px;
+        vertical-align: top;
+        min-width: 0.6em;
+    }
+
+    th.confluenceTh, table.confluenceTable th.confluenceTh {
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ddd;
+        padding: 5px;
+        background-color: #f0f0f0;
+        text-align: left;
+        vertical-align: top;
+        min-width: 0.6em;
+    }
+  </style>
+</head>
+<body>
+<table class='confluenceTable'>
+  <tr>
+      <th class='confluenceTh'>On-call Lead</th>
+      <th class='confluenceTh'>On-call Period</th>
+      <th class='confluenceTh'>Contact Info</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>{{ name }}</td>
+    <td class='confluenceTd'>{{ oncallStartDate }} - <br/>{{ oncallEndDate }}</td>
+    <td class='confluenceTd'>
+      <ul>
+        <li><a href="mailto:social-incident@pearsonsocial.pagerduty.com">social-incident@pearsonsocial.pagerduty.com</a></li>
+        {% for notificationRule in userNotification.notification_rules %}
+          <li>
+            {{ notificationRule.contact_method.label }} 
+            {{ notificationRule.contact_method.type }} 
+            {{ notificationRule.contact_method.address }}
+          </li>
+        {% endfor %}
+      </ul>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

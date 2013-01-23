@@ -1,0 +1,66 @@
+{
+  "actions" : [
+    {
+      "parameters" : [
+        {
+          "name" : "NUM_OF_INSTANCES",
+          "value" : "2"
+        },
+        {
+          "name" : "VERSION",
+          "value" : "0.16.1"
+        },
+        {
+          "name" : "AQUEDUCT_HOST",
+          "value" : "10.201.3.6,10.201.1.244"
+        },
+        {
+          "name" : "AQUEDUCT_PORT",
+          "value" : "10000"
+        },
+        {
+          "name" : "STATSD_HOST",
+          "value" : "10.201.2.187"
+        },
+        {
+          "name" : "ZABBIX_SERVER",
+          "value" : "10.201.6.211"
+        }
+      ]
+    },
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Started by user Tom Barton",
+          "userId" : "tomba",
+          "userName" : "Tom Barton"
+        }
+      ]
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 567984,
+  "estimatedDuration" : 542809,
+  "executor" : null,
+  "fullDisplayName" : "social-manhattan-ui-PROD #111",
+  "id" : "2012-09-24_22-47-23",
+  "keepLog" : false,
+  "number" : 111,
+  "result" : "SUCCESS",
+  "timestamp" : 1348548443891,
+  "url" : "http://arch-jenkins-01.dmz.arch.ecollege.com/view/Manhattan%20UI/job/social-manhattan-ui-PROD/111/",
+  "builtOn" : "",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : null
+  },
+  "culprits" : [
+    
+  ]
+}
