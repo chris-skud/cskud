@@ -3,3 +3,4 @@ $ cat .gitignore
 .idea/
 report/
 *.py[co]
+.DS_Store
