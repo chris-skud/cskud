@@ -15,29 +15,27 @@ handlers:
 - url: /css
   static_dir: css
 
-- url: /proto/css
-  static_dir: proto/css
-
-- url: /proto/js
-  static_dir: proto/js
-
 - url: /img
   static_dir: img
-
-- url: /impress
-  static_dir: impress
-
-- url: /socialism
-  static_dir: socializer
-
-- url: /socializer
-  static_dir: socializer
 
 - url: /manifesto
   static_dir: manifesto
 
-- url: /pagerduty
-  script: pagerduty.py
+- url: /veronica/css
+  static_dir: veronica/css
+
+- url: /veronica/img
+  static_dir: veronica/img
+
+- url: /veronica/js
+  static_dir: veronica/js
+
+- url: /veronica
+  static_files: veronica/index.html
+  upload: veronica/index.html
+
+#- url: /pagerduty
+#  script: pagerduty.py
 
 - url: .*
   script: main.py

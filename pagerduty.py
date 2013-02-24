@@ -27,7 +27,7 @@ class PagerdutyHandler(webapp.RequestHandler):
         scheduleHttpResponse = urlfetch.fetch(url=schedUrl,
                         method=urlfetch.GET,
                         headers={'Content-Type': 'application/json',
-                            'Authorization': 'Token token=i7qpfzdWHSFL2KrixqYp'})
+                            'Authorization': 'Token token=putyourtokenhere'})
 
         
         schedule = json.loads(scheduleHttpResponse.content)
@@ -38,7 +38,7 @@ class PagerdutyHandler(webapp.RequestHandler):
                         #payload=form_data,
                         method=urlfetch.GET,
                         headers={'Content-Type': 'application/json',
-                            'Authorization': 'Token token=i7qpfzdWHSFL2KrixqYp'})
+                            'Authorization': 'Token token=putyourtokenhere'})
 
         userNotification = json.loads(oncallUserInfoHttpResponse.content)
         # format sms/phone numbers correcctly
