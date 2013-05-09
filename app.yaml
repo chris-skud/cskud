@@ -21,19 +21,6 @@ handlers:
 - url: /manifesto
   static_dir: manifesto
 
-- url: /veronica/css
-  static_dir: veronica/css
-
-- url: /veronica/img
-  static_dir: veronica/img
-
-- url: /veronica/js
-  static_dir: veronica/js
-
-- url: /veronica
-  static_files: veronica/index.html
-  upload: veronica/index.html
-
 #- url: /pagerduty
 #  script: pagerduty.py
 
