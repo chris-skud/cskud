@@ -1,22 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-	<title>chris skudlarczyk</title>
-    <link rel="stylesheet" href="css/cskud.css" type="text/css" />
-    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js"></script>
-    <script type="text/javascript">
-        dojo.ready(function () {
-            fadeTarget = dojo.byId("mainimg");
-            dojo.style("mainimg", "opacity", "0");
-            dojo.style("mainimg", "display", "inline");
-            dojo.fadeIn({ node: fadeTarget }).play(500);
-        });
-	</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chris skudlarczyk</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html {
+      
+      /*
+      background-color: #f2f2f2;
+      background: url('img/stgeorgesunset.jpg') no-repeat top center fixed;   
+      -webkit-background-size: cover;  
+      -moz-background-size: cover;  
+      -o-background-size: cover;  
+      background-size: cover;  
+      -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/stgeorgesunset.jpg', sizingMethod='scale')";  
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/stgeorgesunset.jpg', sizingMethod='scale');  
+      */
+    }
+
+    ol, ul {list-style: none;}
+
+    .rowBg {background-color: #f2f2f2;}
+
+    .menu
+    {
+      display:inline-block;
+      position:absolute;
+      top:176px;
+      left:15px;
+      width:256px;
+      background-color:#fff;
+      opacity:0.9;
+      padding:20px;
+    }
+    .menu .holder
+    {
+      display:block;
+      height:185px;
+      text-align:center;
+      width:200px;
+      margin-left: 7px;
+    }
+    .menu .desc
+    {
+      margin-top: 7px;
+      margin-bottom:20px;
+    }
+    .blogContent {
+      width:100%;
+      top:185px;
+      max-width:840px;
+      background-color: #fff;
+      opacity:0.95;
+    }
+    .blogContent .heading {
+      padding:50px;
+      text-align:right;
+      background: black url('img/miloroad.jpg') center no-repeat;
+    }
+
+
+    .blogItemFooter {font-size: .75em;margin-top: 20px; margin-bottom: 100px; text-align: right}
+    #blogs {margin: 50px; height:100%; background-color:#fff}
+
+  </style>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44676405-1', 'cskud.com');
+    ga('send', 'pageview');
+  </script>
 </head>
-<body class="basecskud">
-    <div style="width:100%" class="maindiv">
-        <img alt="milo swat" class="miloimg" id="mainimg" src="img/miloswat.jpg" />
+<body>
+  <div class="row rowBg" style="height:96px;">&nbsp;</div>
+  <div class="row rowBg">
+    <div class="col-xs-3">
+      <div class="menu">
+        <div class="holder">
+          <img src="img/me200.jpg" alt="chris head">
+        </div>
+        <div style="text-align:center;font-weight:bold">Chris Skudlarczyk</div>
+        <div class="desc">
+          Denver, CO based husband, dad, 
+          techincal manager (hopefully leader) @pearson, 
+          always hacking, 
+          rider of bikes, 
+          struggling guitarist/creator
+          -- hoping to do more, better in "all the things."
+        </div>
+        <div style="text-align:center">
+          <a href="https://twitter.com/chris_skud" target="_new"><img src="img/twitter-24-black.png" /></a> 
+          <a href="http://linkedin.com/pub/chris-skudlarczyk/2/419/94b" id="linkedin" target="_new"><img src="img/linkedin-24-black.png" /></a> 
+          <a href="https://github.com/chris-skud" target="_new"><img src="img/github-24-black.png" /></a> 
+          <a href="http://cskud.blogspot.com" target="_new"><img src="img/blogger-24-black.png" /></a>
+        </div>
+      </div>
     </div>
+    <div class="col-xs-9">
+      <div class="blogContent">
+        <div class="heading"></div>
+        <div id="blogs"></div>
+      </div>
+    </div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    $( document ).ready(function() {
+      //var blogs = blogData.items;
+      $.getJSON("https://www.googleapis.com/blogger/v3/blogs/5861534680333755994/posts?key=AIzaSyCXzSuyEzTPxHLmYjc8VWkFuvlJQs_rSyw", function( data ) {
+        //alert(JSON.stringify(data));
+        var blogs = data.items;
+        var blogItemHtml = '';
+        for (var i=0; i<blogs.length; i++) {
+          blogItemHtml += '<h4>' + blogs[i].title + '</h4>' + 
+                          '<div>' + blogs[i].content + '</div>' + 
+                          '<div class="blogItemFooter">' + blogs[i].author.displayName + ' - ' + blogs[i].published.slice(0,10) + '</div>';
+        }
+        $('#blogs').append(blogItemHtml);
+        $('#blogContent').css('height:100%');
+      
+      });
+    });
+  </script>
 </body>
 </html>

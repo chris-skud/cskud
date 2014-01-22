@@ -21,8 +21,14 @@ handlers:
 - url: /manifesto
   static_dir: manifesto
 
-#- url: /pagerduty
-#  script: pagerduty.py
+- url: /perf
+  static_dir: perf
+
+- url: /leyden
+  static_dir: leyden
+
+- url: /pagerduty
+  script: pagerduty.py
 
 - url: .*
   script: main.py

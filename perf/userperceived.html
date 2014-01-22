@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OpenClass User Perceived Metrics</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <style>
+    .resultVal {font-weight: bold}
+    .resultDiv {border:1px solid #ccc; padding: 10px;}
+    .inputDiv {padding:10px;}
+    .inputLabel {white-space:nowrap; width:300px;}
+  </style>
+  </head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">OpenClass Scalability Calculator</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Teaching/Learning</a></li>
+      <li><a href="#">Registration</a></li>
+      <li><a href="#">Course Creation</a></li>
+    </ul>
+  </div>
+</div>
+<br/>
+<div class="container" style="align:center">
+  <div class="row">
+    <div class="span8">
+      <div class="inputDiv">
+        <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label inputLabel" style="width:300px" for="activeUsers">Active Users:&nbsp;</label>
+          <div class="controls">
+            <input type="number" id="activeUsers" value="250000">
+            <span class="help-inline"><i data-content="Users with at least one enrollment in the active term (or period you're analyzing)." class="icon-info-sign"></i></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" style="width:300px" for="visitFrequency">Visits Per Month:&nbsp;</label>
+          <div class="controls">
+            <input type="number" id="visitFrequency" value="15">
+            <span class="help-inline"><i data-content="Number of times a typical user will visit the site per month.  15 = every other day; 30 = every day; 60 = twice per day" class="icon-info-sign"></i></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" style="width:300px" for="sessionLength">Typical Sesssion Length (minutes):&nbsp;</label>
+          <div class="controls">
+            <input type="number" id="sessionLength" value="8">
+            <span class="help-inline"><i data-content="The typical duration of a user session.  Presence instrumentation has this at about 8mins currently but skewed perhaps by monitoring" class="icon-info-sign"></i></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" style="width:300px" for="activeHours">Hours per Day of Material Traffic:&nbsp;</label>
+          <div class="controls">
+            <input type="number" id="activeHours" value="15">
+            <span class="help-inline"><i data-content="Use this to remove hours of the day where there is little or no traffic on the site.  12-15hrs is typical for domestic sites.  If you're running a fully global product with consistent usage at all hours, use 24." class="icon-info-sign"></i></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" style="width:300px" for="peakMultiplier">Peak Use Multiplier:&nbsp;</label>
+          <div class="controls">
+            <input type="number" id="peakMultiplier" value="2">
+            <span class="help-inline"><i data-content="Use this to add buffer to projection.  2 = 2x, 3 = 3x, etc..." class="icon-info-sign"></i></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="span4">
+    
+    <div class="resultDiv" width:300px>
+      <span style="font-weight:bold">Results:</span><br/>
+      Avg Monthly Users: <span id="monthlyUsers" class="resultVal"></span><br /> 
+      Avg Daily Users: <span id="dailyUsers" class="resultVal"></span><br /> 
+      Avg Hourly Users: <span id="hourlyUsers" class="resultVal"></span><br /> 
+      Peak Hourly Users: <span id="peakHourlyUsers" class="resultVal"></span><br /> 
+      Concurrently Active Users <span id="concurrentUsers" class="resultVal"></span>
+      <br/><br/>
+      <span style="font-weight:bold">With Parameters:</span><br/>
+      Active Users: <span id="activeUsersParam" class="resultVal"></span><br />
+      Typical Session Length: <span id="sessionLengthParam" class="resultVal"></span><br />
+      Active Hours: <span id="activeHoursParam" class="resultVal"></span><br />
+      Visits per Month: <span id="visitFrequencyParam" class="resultVal"></span><br />
+      Peak Use Multiplier: <span id="peakMultiplierParam" class="resultVal"></span><br />
+    </div>
+  </div>
+</div>
+</div>
+<script>
+function doCalc(activeUsers, sessionLength, activeHours, visitFrequency, peakMultiplier) {
+  var capObj = {};
+  capObj.monthlyUsers = activeUsers * visitFrequency;
+  capObj.dailyUsers = capObj.monthlyUsers / 30;
+  capObj.hourlyUsers = capObj.dailyUsers / activeHours;
+  capObj.peakHourlyUsers = capObj.hourlyUsers * peakMultiplier;
+  capObj.concurrentUsers = capObj.peakHourlyUsers * (sessionLength / 60);
+
+  return capObj;
+}
+
+function roundedToFixed(_float, _digits){
+  var rounder = Math.pow(10, _digits);
+  return (Math.round(_float * rounder) / rounder).toFixed(_digits);
+}
+
+function setPopovers() {
+  $('.icon-info-sign').each(function(){
+    $(this).popover({trigger:'hover'});
+  });
+}
+
+function processForm() {
+  var activeUsers = parseFloat($('#activeUsers').val());
+  var sessionLength = parseFloat($('#sessionLength').val());
+  var activeHours = parseFloat($('#activeHours').val());
+  var visitFrequency = parseFloat($('#visitFrequency').val());
+  var peakMultiplier = parseFloat($('#peakMultiplier').val());
+  
+  var capObj = {};
+  if ( (!isNaN(visitFrequency)) &&  (!isNaN(activeUsers)) &&  (!isNaN(sessionLength)) &&  (!isNaN(activeHours)) &&  (!isNaN(peakMultiplier))) {
+    capObj  = doCalc(activeUsers, sessionLength, activeHours, visitFrequency, peakMultiplier);
+    
+    $('#monthlyUsers').text(roundedToFixed(capObj.monthlyUsers, 2));
+    $('#dailyUsers').text(roundedToFixed(capObj.dailyUsers, 2));
+    $('#hourlyUsers').text(roundedToFixed(capObj.hourlyUsers, 2));
+    $('#peakHourlyUsers').text(roundedToFixed(capObj.peakHourlyUsers, 2));
+    $('#concurrentUsers').text(roundedToFixed(capObj.concurrentUsers, 2));
+
+    $('#activeUsersParam').text(activeUsers);
+    $('#sessionLengthParam').text(sessionLength + ' minutes');
+    $('#activeHoursParam').text(activeHours);
+    $('#visitFrequencyParam').text(visitFrequency);
+    $('#peakMultiplierParam').text(peakMultiplier);
+  }
+}
+
+$( document ).ready(function() {
+  setPopovers();
+
+  processForm();
+  // fire this every time a value is changed in the form
+  $('input').change(function() {
+    processForm();  
+  }); 
+});
+</script>
+</body>
+</html>
