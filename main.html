@@ -6,64 +6,46 @@
   <title>chris skudlarczyk</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style>
-    html {
-      
-      /*
-      background-color: #f2f2f2;
-      background: url('img/stgeorgesunset.jpg') no-repeat top center fixed;   
-      -webkit-background-size: cover;  
-      -moz-background-size: cover;  
-      -o-background-size: cover;  
-      background-size: cover;  
-      -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/stgeorgesunset.jpg', sizingMethod='scale')";  
-      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/stgeorgesunset.jpg', sizingMethod='scale');  
-      */
-    }
-
-    ol, ul {list-style: none;}
-
-    .rowBg {background-color: #f2f2f2;}
-
     .menu
     {
-      display:inline-block;
-      position:absolute;
-      top:176px;
-      left:15px;
-      width:256px;
       background-color:#fff;
       opacity:0.9;
       padding:20px;
+      max-width:216;
+      margin-top:128px;
     }
-    .menu .holder
+    
+
+    .menu .meImg
     {
-      display:block;
-      height:185px;
       text-align:center;
-      width:200px;
-      margin-left: 7px;
     }
     .menu .desc
     {
-      margin-top: 7px;
+      margin-top: 15px;
       margin-bottom:20px;
     }
+    ol, ul {list-style: none;}
+
     .blogContent {
-      width:100%;
+      /* width:100%; */
       top:185px;
-      max-width:840px;
+      /* max-width:840px; */
       background-color: #fff;
       opacity:0.95;
     }
     .blogContent .heading {
-      padding:50px;
-      text-align:right;
-      background: black url('img/miloroad.jpg') center no-repeat;
+      background: black url('img/miloroad848.jpg') center no-repeat;
+      height:178px;
     }
 
 
     .blogItemFooter {font-size: .75em;margin-top: 20px; margin-bottom: 100px; text-align: right}
-    #blogs {margin: 50px; height:100%; background-color:#fff}
+    #blogs {
+      margin: 50px;
+      height:100%; 
+      background-color:#fff
+    }
 
   </style>
   <script>
@@ -76,35 +58,37 @@
     ga('send', 'pageview');
   </script>
 </head>
-<body>
-  <div class="row rowBg" style="height:96px;">&nbsp;</div>
-  <div class="row rowBg">
-    <div class="col-xs-3">
-      <div class="menu">
-        <div class="holder">
-          <img src="img/me200.jpg" alt="chris head">
-        </div>
-        <div style="text-align:center;font-weight:bold">Chris Skudlarczyk</div>
-        <div class="desc">
-          Denver, CO based husband, dad, 
-          techincal manager (hopefully leader) @pearson, 
-          always hacking, 
-          rider of bikes, 
-          struggling guitarist/creator
-          -- hoping to do more, better in "all the things."
-        </div>
-        <div style="text-align:center">
-          <a href="https://twitter.com/chris_skud" target="_new"><img src="img/twitter-24-black.png" /></a> 
-          <a href="http://linkedin.com/pub/chris-skudlarczyk/2/419/94b" id="linkedin" target="_new"><img src="img/linkedin-24-black.png" /></a> 
-          <a href="https://github.com/chris-skud" target="_new"><img src="img/github-24-black.png" /></a> 
-          <a href="http://cskud.blogspot.com" target="_new"><img src="img/blogger-24-black.png" /></a>
+<body style="background-color:#f2f2f2;">
+  <div class="container" style="padding: 0 15px;background-color: #f2f2f2;">
+    <div class="row" style="height:56px;">&nbsp;</div>
+    <div class="row">
+      <div class="hidden-xs col-sm-3">
+        <div class="menu">
+          <div>
+            <img src="img/me223.jpg" class="img-responsive" alt="chris head">
+          </div>
+          <div style="text-align:center;font-weight:bold; padding-top: 20px">Chris Skudlarczyk</div>
+          <div class="desc">
+            Denver, CO based husband, dad, 
+            techincal manager (hopefully leader) @pearson, 
+            always hacking, 
+            rider of bikes, 
+            struggling guitarist/creator
+            -- hoping to do more, better in "all the things."
+          </div>
+          <div style="text-align:center">
+            <a href="https://twitter.com/chris_skud" target="_new"><img src="img/twitter-24-black.png" /></a> 
+            <a href="http://linkedin.com/pub/chris-skudlarczyk/2/419/94b" id="linkedin" target="_new"><img src="img/linkedin-24-black.png" /></a> 
+            <a href="https://github.com/chris-skud" target="_new"><img src="img/github-24-black.png" /></a> 
+            <a href="http://cskud.blogspot.com" target="_new"><img src="img/blogger-24-black.png" /></a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-9">
-      <div class="blogContent">
-        <div class="heading"></div>
-        <div id="blogs"></div>
+      <div class="col-xs-12 col-sm-9">
+        <div class="blogContent">
+          <div class="heading"></div>
+          <div id="blogs"></div>
+        </div>
       </div>
     </div>
   </div>
